@@ -30,8 +30,8 @@ class MyAppBar extends StatelessWidget {
   }
 }
 
-class MyScaffold extends StatelessWidget { // Cambiado de MyScanfold a MyScaffold
-  const MyScaffold({super.key});
+class MyShoppingList extends StatelessWidget { 
+  const MyShoppingList({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,11 +40,10 @@ class MyScaffold extends StatelessWidget { // Cambiado de MyScanfold a MyScaffol
         children: [
           MyAppBar(
             title: Text(
-              'Example title',
+              'Shopping List',
               style: Theme.of(context).primaryTextTheme.titleLarge,
             ),
           ),
-          Center(child: Counter()),
           Expanded(
             child: ShoppingList(
               products: [
@@ -62,33 +61,6 @@ class MyScaffold extends StatelessWidget { // Cambiado de MyScanfold a MyScaffol
         tooltip: 'Add',
         child: Icon(Icons.add),
       ),
-    );
-  }
-}
-
-class Counter extends StatefulWidget {
-  const Counter({super.key});
-  @override
-  _CounterState createState() => _CounterState();
-}
-
-class _CounterState extends State<Counter> {
-  int _counter = 0;
-  void _increment() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        ElevatedButton(onPressed: _increment, child: const Text('Increment')),
-        const SizedBox(width: 16),
-        Text('Count: $_counter'),
-      ],
     );
   }
 }
