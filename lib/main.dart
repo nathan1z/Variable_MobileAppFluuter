@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/homePage.dart';
+import 'package:flutter_application_1/pages/shoppingList.dart';
+import 'package:flutter_application_1/pages/counter.dart';
+import 'package:flutter_application_1/styles/styles.dart';
+import 'package:flutter_application_1/pages/homeInmobilistico.dart';
 
 void main() {
-  runApp(MyApp()); // Solo una instancia de MaterialApp
+  runApp(MyApp()); 
 }
 
 class MyApp extends StatelessWidget {
@@ -14,8 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       initialRoute: '/home',
       routes: {
-        '/home':
-            (context) => HomePage(), // Cambiado de MyScanfold a MyScaffold
+        '/home': (context) => HomePage(), 
       },
     );
   }
@@ -23,33 +25,35 @@ class MyApp extends StatelessWidget {
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+ 
+ ElevatedButton _buildButton(BuildContext context, String text, Widget page) {
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => page),
+        );
+      },
+      style: buttonStyle,
+      child: Text(text),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child :Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children:[
-          ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const MyScaffold()),
-            );
-          },
-          child: Text('Go Counter'),
-        ), const SizedBox(height: 20),
-        ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const MyScaffold()),
-            );
-          },
-          child: Text('Go ShoppingList'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _buildButton(context, 'Go Shopping List', MyShoppingList()),
+            const SizedBox(height: 16),
+            _buildButton(context, ' Go Counter', CounterWidget()),
+            const SizedBox(height: 16),
+            _buildButton(context, 'Go Inmobilístico', Homeinmobilistico())
+            
+          ],
         ),
-        ],
-      ),
       ),
     );
   }
